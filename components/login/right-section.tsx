@@ -6,6 +6,7 @@ import { Input } from "../ui/input"
 import { useState } from "react"
 import { Label } from "../ui/label"
 import { Button } from "../ui/button"
+import { toast } from "sonner";
 
 export const RightSection = () => {
     // useState
@@ -31,8 +32,8 @@ export const RightSection = () => {
 
         // fetch API
 
-        await fetch(
-            "http://localhost:8080/users/login",
+        const response = await fetch(
+            "http://localhost:8080/Users/login",
             {
                 method: "POST",
                 headers: {
@@ -42,13 +43,22 @@ export const RightSection = () => {
                     email: email,
                     password: password
                 })
+            })
+        if (response.status === 200) {
+            toast.success("login feito com sucesso!");
+
+            const responseData= await response.json();
+
+            console.log( {"dados recebidos": responseData})
+
+            if ( typeof window !== "undefined") {
+                window.location.href = "/home";
+            }else {
+                toast.error("Nao foi possivel fazer login, tente novamente mais tarde!");
             }
-        ).then((response) => {
-            console.log(response.json())
-        });
+        } 
 
     };
-
     console.log({ email: email, password: password })
 
 
@@ -90,7 +100,7 @@ export const RightSection = () => {
                     </div>
                     <div className="flex flex-col gap-2 mt-4">
                         <span>Don't have an account?</span>
-                        <Link href="/register" className="text-[#13A4EC]">Create Account</Link>
+                        <Link href="/registro" className="text-[#13A4EC]">Create Account</Link>
                     </div>
                 </CardContent>
             </Card>
