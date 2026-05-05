@@ -6,6 +6,7 @@ import { Input } from "../ui/input"
 import { useState } from "react"
 import { Label } from "../ui/label"
 import { Button } from "../ui/button"
+import { toast } from "sonner";
 
 export const RightSection = () => {
     // useState
@@ -97,7 +98,7 @@ const changeDataNascimento = (e: React.ChangeEvent<HTMLInputElement>) => {
     const handleRegistro = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-       await fetch(
+    const response = await fetch(
             "http://localhost:8080/users/create",
             {
                 method: "POST",
@@ -113,13 +114,20 @@ const changeDataNascimento = (e: React.ChangeEvent<HTMLInputElement>) => {
                     telefone: telefone,
                     pais: pais,
                     localidade: localidade,
-                    role: role
+                    role: "cliente"                   
                 })
             }
-        ).then((response) => {
-            console.log(response.json())
-        });
-    };
+        )
+        if (response.status) {
+            toast.success("utilizador criado com sucesso!");
+            
+            if ( typeof window !== "undefined") {
+                window.location.href = "/login";
+            }else {
+                toast.error("Nao foi possivel cria conta, tente novamente mais tarde!");
+            }
+        }
+            };
 
     console.log({ Name: Name,
         Nome_identifica: Nome_identifica,
