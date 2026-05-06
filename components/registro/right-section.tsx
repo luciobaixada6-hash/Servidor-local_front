@@ -106,15 +106,16 @@ const changeDataNascimento = (e: React.ChangeEvent<HTMLInputElement>) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    Name: Name,
-                    Nome_identifica: Nome_identifica,
-                    Data_nascimento: Data_nascimento    ,
+                    nome: Name,
+                    nome_identifica: Nome_identifica,
+                    data_nascimento: Data_nascimento ,
                     email: email,
                     password: password,
                     telefone: telefone,
                     pais: pais,
                     localidade: localidade,
-                    role: "cliente"                   
+                    role: "cliente",
+                    enabled: true
                 })
             }
         )
@@ -174,9 +175,9 @@ const changeDataNascimento = (e: React.ChangeEvent<HTMLInputElement>) => {
                             <div className="flex flex-col gap-4">
                                 <Label>Data de nascimento</Label>
                                 <Input
-                                    type="date"
-                                    placeholder="Sua data de nascimento"
-                                    className="py-4 text-lg h-10"
+                                    type="text"
+                                    placeholder="dd-mm-aaaa" 
+                                    className="py-3 text-lg h-10"
                                     value={Data_nascimento}
                                     onChange={changeDataNascimento}
                                 />

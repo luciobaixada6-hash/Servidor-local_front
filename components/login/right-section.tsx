@@ -8,6 +8,8 @@ import { Label } from "../ui/label"
 import { Button } from "../ui/button"
 import { toast } from "sonner";
 
+import { setCookie} from  "nookies";
+
 export const RightSection = () => {
     // useState
     const [email, setEmail] = useState("");
@@ -50,6 +52,18 @@ export const RightSection = () => {
             const responseData= await response.json();
 
             console.log( {"dados recebidos": responseData})
+
+                //salvar os dados na cookies
+                setCookie(null, "token", responseData.token, {
+                    maxAge: 60 * 60* 24* 7,
+                    path: "/",
+                })
+                // 30 dias
+                setCookie(null, "user", JSON.stringify( responseData.data), {
+                    maxAge: 60 * 60* 24* 7,
+                    path: "/",
+                })  
+                    
 
             if ( typeof window !== "undefined") {
                 window.location.href = "/home";
