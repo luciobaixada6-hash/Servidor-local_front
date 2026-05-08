@@ -5,6 +5,9 @@ interface Categoriatype {
     id: number;
     name: string;
     icone: string;
+    description: string;
+    imagem: string;
+    categoryId?: Categoriatype;
 }
 
 
@@ -20,10 +23,10 @@ export const PedidoCard = (PedidoCardProps: PedidoCardProps) => {
 
         <Card className="h-[400px] w-full">
             <CardContent>
-                <div className="w-full h-[200px] relative">
+                <div className="w-full h-[200px] relative rounded-lg overflow-hidden mb-4">
                     <Image
                         src={PedidoCardProps.image}
-                        alt={PedidoCardProps.title}
+                        alt="full-stack-developer.png"
                         fill
                         className="object-cover"
                     />
