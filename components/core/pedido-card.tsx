@@ -7,7 +7,7 @@ interface Categoriatype {
     icone: string;
     description: string;
     imagem: string;
-    categoryId?: Categoriatype;
+    categoryId?: Categoriatype;   
 }
 
 
