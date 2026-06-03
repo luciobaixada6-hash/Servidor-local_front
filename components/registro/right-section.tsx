@@ -114,7 +114,7 @@ const changeDataNascimento = (e: React.ChangeEvent<HTMLInputElement>) => {
                     telefone: telefone,
                     pais: pais,
                     localidade: localidade,
-                    role: "cliente",
+                    role: "cliente", 
                     enabled: true
                 })
             }
